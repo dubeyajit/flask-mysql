@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  # MySQL container
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ajitdubey
+      MYSQL_DATABASE: myDB
+      MYSQL_USER: ajitdubey
+      MYSQL_PASSWORD: ajitdubey
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  # phpMyAdmin container
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+
+  laravel-dev:
+    image: laravel_dev_env:latest
+    command: ["bash"]
+    stdin_open: true
+    tty: true
+    ports:
+      - "5000:5000"
+    volumes:
+      - /Users/ajit.dubey/projects/laravel/data:/home/ajitdubey/data
+
+
+volumes:
+  mysql_data: 

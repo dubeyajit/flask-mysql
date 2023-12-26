@@ -1,0 +1,18 @@
+sudo mysql -h 172.21.0.2 -u ajitdubey -P 3306 -p
+/home/ajitdubey/data/ypiedhnn_fine.sql
+
+sudo mysqldump -h 172.21.0.2 -u ajitdubey -P 3306 -p myDB < /home/ajitdubey/data/ypiedhnn_fine.sql
+
+
+-----------------
+How to initiate the activity
+In laravel folder execute ./build.sh for the latest laravel_dev_env build
+Execute ./deploy.sh from mysql-d-server folder -> This will deploy Mysql, Phpmyadmin and laravel mysql client
+
+To get into laravel instance
+
+docker exec -it mysql-db-server-laravel-dev-1 bash
+
+sudo mysql -h 172.21.0.2 -u ajitdubey -P 3306 -p
+
+
