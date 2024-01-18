@@ -53,6 +53,12 @@ ENV HOME /home/${username}
 WORKDIR $HOME/data
 #RUN pip install Flask && package_name
 COPY data/requirements.txt .
+
+RUN sudo apt update && sudo apt upgrade -y
+RUN sudo apt-get install default-libmysqlclient-dev -y
+RUN sudo apt-get install mysql-client -y
+RUN sudo apt-get install libmysqlclient-dev -y
+RUN sudo apt install pkg-config -y
 RUN pip install pipenv --user --break-system-packages -r requirements.txt
 
 # You can add more instructions here based on your specific needs

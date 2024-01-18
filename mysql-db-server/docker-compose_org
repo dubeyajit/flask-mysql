@@ -4,23 +4,19 @@ services:
   # MySQL container
   mysql:
     image: mysql:latest
-    container_name: mysql-server
     environment:
       MYSQL_ROOT_PASSWORD: ajitdubey
       MYSQL_DATABASE: myDB
-      MYSQL_USER: root
+      MYSQL_USER: ajitdubey
       MYSQL_PASSWORD: ajitdubey
     ports:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-    networks:
-      - dubey-networks
 
   # phpMyAdmin container
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
-    container_name: phpMyAdmin
     environment:
       PMA_HOST: mysql
       PMA_PORT: 3306
@@ -28,12 +24,9 @@ services:
       - "8080:80"
     depends_on:
       - mysql
-    networks:
-      - dubey-networks
 
   flask-dev:
     image: flask_dev_env:latest
-    container_name: flask_dev_system
     command: ["bash"]
     stdin_open: true
     tty: true
@@ -41,11 +34,7 @@ services:
       - "5000:5000"
     volumes:
       - /Users/ajit.dubey/projects/flask-mysql/data:/home/ajitdubey/data
-    networks:
-      - dubey-networks
 
-networks:
-  dubey-networks:
-    driver: bridge
+
 volumes:
   mysql_data: 
